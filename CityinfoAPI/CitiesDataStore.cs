@@ -4,15 +4,67 @@ namespace CityinfoAPI
 {
     public class CitiesDataStore
     {
-        public List<CityDto> cityDtos { get; set; }
-        public static CitiesDataStore current { get;}=new CitiesDataStore();
+        public List<CityDto> Cities { get; set; }
+
+        public static CitiesDataStore current { get; } = new CitiesDataStore();
+
         public CitiesDataStore()
         {
-            cityDtos = new List<CityDto>(){
+            Cities = new List<CityDto>()
+            {
+                new CityDto() { Id = 1, Name = "Tehran",
+                Description ="This  is My City"
+                ,PointsOfInterest = new List<PointOfInterestDto>()
+                {
+                    new PointOfInterestDto()
+                    {
+                        Id  =  1,
+                        Name="Jaye Didanie  1",
+                        Description = "This Is Jaye Didanie  1"
+                    },
+                     new PointOfInterestDto()
+                    {
+                        Id  =  2,
+                        Name="Jaye Didanie  2",
+                        Description = "This Is Jaye Didanie  2"
+                    },
+                }
 
-                new CityDto(){Id=1,Name="tehran",Description="this is iran"},
-                new CityDto(){Id=1,Name="mashhad",Description="this is khorasan"},
-                new CityDto(){Id=1,Name="shiraz",Description="this is fars"},
+                },
+                 new CityDto() { Id = 2, Name = "Shiraz",
+                Description ="This  is My City"
+                  ,PointsOfInterest = new List<PointOfInterestDto>()
+                {
+                    new PointOfInterestDto()
+                    {
+                        Id  =  3,
+                        Name="Jaye Didanie  3",
+                        Description = "This Is Jaye Didanie  3"
+                    },
+                     new PointOfInterestDto()
+                    {
+                        Id  =  4,
+                        Name="Jaye Didanie  4",
+                        Description = "This Is Jaye Didanie 4"
+                    },
+                }},
+                  new CityDto() { Id = 3, Name = "Ahwaz",
+                Description ="This  is My City"
+                   ,PointsOfInterest = new List<PointOfInterestDto>()
+                {
+                    new PointOfInterestDto()
+                    {
+                        Id  =  5,
+                        Name="Jaye Didanie  5",
+                        Description = "This Is Jaye Didanie  5"
+                    },
+                     new PointOfInterestDto()
+                    {
+                        Id  =  6,
+                        Name="Jaye Didanie  6",
+                        Description = "This Is Jaye Didanie 6"
+                    },
+                }},
             };
         }
     }

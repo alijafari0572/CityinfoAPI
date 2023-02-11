@@ -2,21 +2,22 @@
 
 namespace CityinfoAPI.Controllers
 {
+    [Route("api/Cities")]
     [ApiController]
     //[Route("api/[controller]")]
-    [Route("api/Cities")]
     public class CitiesController : ControllerBase
     {
         [HttpGet]
-        public JsonResult GetCities()
+        public IActionResult GetCities()
         {
-            return new JsonResult(CitiesDataStore.current);
+            return Ok(CitiesDataStore.current.Cities);
         }
         [HttpGet("{id}")]
-        public JsonResult GetCities(int id)
+        public IActionResult GetCities(int id)
         {
-            return new JsonResult(CitiesDataStore.current.cityDtos
-                .FirstOrDefault(c=>c.Id==id));
+            var city = CitiesDataStore.current.Cities
+                .FirstOrDefault(c => c.Id == id);
+            return Ok(city);
         }
     }
 }
