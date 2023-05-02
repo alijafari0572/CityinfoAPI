@@ -20,13 +20,23 @@ namespace CityinfoAPI.Controllers
         [HttpGet]
         public IActionResult GetPointsOfInterst(int cityid) 
         {
-            var city=CitiesDataStore.current.Cities.FirstOrDefault(c=>c.Id==cityid);
-            if (city==null)
+            try
             {
-                _logger.LogInformation($"City with id {cityid} wasn't found");
-                return NotFound();
+                throw new Exception("Exeption sample ...");
+                var city = CitiesDataStore.current.Cities.FirstOrDefault(c => c.Id == cityid);
+                if (city == null)
+                {
+                    _logger.LogInformation($"City with id {cityid} wasn't found");
+                    return NotFound();
+                }
+                return Ok(city.PointsOfInterest);
             }
-            return Ok(city.PointsOfInterest);
+            catch (Exception ex)
+            {
+                _logger.LogCritical($"Exeption getting  {cityid}", ex);
+                return StatusCode(500, "A Problem happend while ....");
+            }
+            
         }
 
 
