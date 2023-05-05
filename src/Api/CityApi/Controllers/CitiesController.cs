@@ -17,6 +17,10 @@ namespace CityinfoAPI.Controllers
         {
             var city = CitiesDataStore.current.Cities
                 .FirstOrDefault(c => c.Id == id);
+            if (city == null)
+            {
+                return NotFound();
+            }
             return Ok(city);
         }
     }
