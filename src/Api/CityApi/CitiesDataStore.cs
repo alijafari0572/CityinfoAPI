@@ -1,4 +1,5 @@
-﻿using CityinfoAPI.Models;
+﻿using City_Appilcation.DTOs;
+using CityinfoAPI.Models;
 
 namespace CityinfoAPI
 {
@@ -6,7 +7,7 @@ namespace CityinfoAPI
     {
         public List<CityDto> Cities { get; set; }
 
-        public static CitiesDataStore current { get; } = new CitiesDataStore();
+        //public static CitiesDataStore current { get; } = new CitiesDataStore();
 
         public CitiesDataStore()
         {

@@ -4,8 +4,14 @@ namespace CityApi.Services
 {
     public class CloudMailService : IMailService
     {
-        string _mailTo = "Iman@Madaeny.com";
-        string _mailFrom = "log@Toplearn.com";
+        private readonly string _mailTo = string.Empty;
+        private readonly string _mailFrom = string.Empty;
+
+        public CloudMailService(IConfiguration configuration)
+        {
+            _mailTo = configuration["mailSetting:mailToAddress"];
+            _mailFrom = configuration["mailSetting:mailFromAddress"];
+        }
 
         public void Send(string subject, string message)
         {

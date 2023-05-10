@@ -25,4 +25,12 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\City_Appilcation\City_Appilcation.csproj" />
+  </ItemGroup>
+
 </Project>
