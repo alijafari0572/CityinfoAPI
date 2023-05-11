@@ -1,4 +1,5 @@
-﻿using City_Appilcation.Contracts.Persistance;
+﻿using AutoMapper;
+using City_Appilcation.Contracts.Persistance;
 using City_Appilcation.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +11,11 @@ namespace CityinfoAPI.Controllers
     public class CitiesController : ControllerBase
     {
         private readonly ICityInfoRepository _cityInfoRepository;
-        public CitiesController(ICityInfoRepository cityInfoRepository)
+        private readonly IMapper _mapper;
+        public CitiesController(ICityInfoRepository cityInfoRepository, IMapper mapper)
         {
             _cityInfoRepository = cityInfoRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -20,20 +23,9 @@ namespace CityinfoAPI.Controllers
         {
             var Cities = await _cityInfoRepository.GetCitiesAsync();
 
-            var result = new List<CityWithoutPointOfInterestDto>();
-
-            foreach (var city in Cities)
-            {
-                result.Add(new CityWithoutPointOfInterestDto()
-                {
-                    Id = city.Id,
-                    Description = city.Description,
-                    Name = city.Name
-                });
-            }
-
-            return Ok(result);
-            // return Ok(citiesDataStore.Cities);
+            return Ok(
+                _mapper.Map<IEnumerable<CityWithoutPointOfInterestDto>>(Cities)
+                );
         }
         [HttpGet("{id}")]
         public IActionResult GetCities(int id)

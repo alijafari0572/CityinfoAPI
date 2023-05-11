@@ -34,6 +34,26 @@ namespace City_Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "This is Tehran",
+                            Name = "Tehran"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "This is Shiraz",
+                            Name = "Shiraz"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "This is Tabriz",
+                            Name = "Tabriz"
+                        });
                 });
 
             modelBuilder.Entity("City_Domain.PointOfInterest", b =>
@@ -60,6 +80,29 @@ namespace City_Persistence.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("PointOfInterest");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            Description = "Tell 02188454816",
+                            Name = "Academy Barnamenevisan"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = 1,
+                            Description = "This is Shemiran",
+                            Name = "Shemiran"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 1,
+                            Description = "This is ToopKhoone",
+                            Name = "Meydan ToopKhoone"
+                        });
                 });
 
             modelBuilder.Entity("City_Domain.PointOfInterest", b =>
