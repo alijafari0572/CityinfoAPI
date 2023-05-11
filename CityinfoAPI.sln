@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityApi", "src\Api\CityApi\CityApi.csproj", "{E9C03013-A7A3-481F-874C-F74F1EC064F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityApi", "src\Api\CityApi\CityApi.csproj", "{E9C03013-A7A3-481F-874C-F74F1EC064F1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{208E6365-47A6-4149-8E6E-38A77689B4F3}"
 EndProject
@@ -11,13 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{3888C412-298
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EC7D993B-2A19-431F-B71E-5CB379772E83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "City_Appilcation", "src\Core\City_Appilcation\City_Appilcation.csproj", "{1F0E2E2B-79E2-4130-A843-BE5B520AACA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "City_Appilcation", "src\Core\City_Appilcation\City_Appilcation.csproj", "{1F0E2E2B-79E2-4130-A843-BE5B520AACA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "City_Domain", "src\Core\City_Domain\City_Domain.csproj", "{BE4681ED-55B1-41E2-94BF-63F0463D487D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "City_Domain", "src\Core\City_Domain\City_Domain.csproj", "{BE4681ED-55B1-41E2-94BF-63F0463D487D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infestructure", "Infestructure", "{671D5871-539E-4ACB-9B4B-8B5E24FDA3E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{FACB8FE7-0AF0-4ACB-92F9-346B3BBDA15F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "City_Persistence", "src\Infestructure\City_Persistence\City_Persistence.csproj", "{9697D9CE-0FD5-41ED-93EF-921527CF84CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{BE4681ED-55B1-41E2-94BF-63F0463D487D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE4681ED-55B1-41E2-94BF-63F0463D487D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE4681ED-55B1-41E2-94BF-63F0463D487D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9697D9CE-0FD5-41ED-93EF-921527CF84CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9697D9CE-0FD5-41ED-93EF-921527CF84CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9697D9CE-0FD5-41ED-93EF-921527CF84CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9697D9CE-0FD5-41ED-93EF-921527CF84CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{BE4681ED-55B1-41E2-94BF-63F0463D487D} = {EC7D993B-2A19-431F-B71E-5CB379772E83}
 		{671D5871-539E-4ACB-9B4B-8B5E24FDA3E5} = {208E6365-47A6-4149-8E6E-38A77689B4F3}
 		{FACB8FE7-0AF0-4ACB-92F9-346B3BBDA15F} = {208E6365-47A6-4149-8E6E-38A77689B4F3}
+		{9697D9CE-0FD5-41ED-93EF-921527CF84CD} = {671D5871-539E-4ACB-9B4B-8B5E24FDA3E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33250DBD-867D-47CC-95C2-A8AA23ED8DDC}

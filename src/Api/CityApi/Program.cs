@@ -1,7 +1,9 @@
+using City_Persistence;
 using CityApi.Services;
 using CityInfo.API.Services;
 using CityinfoAPI;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -33,7 +35,13 @@ builder.Services.AddTransient<IMailService,CloudMailService>();
 #endif
 
 builder.Services.AddSingleton<CitiesDataStore>();
-
+builder.Services.AddDbContext<CityInfoDbContext>();
+builder.Services.AddDbContext<CityInfoDbContext>(option =>
+{
+    option.UseSqlite(
+        builder.Configuration["ConnectionStrings:CityConnectionString"]
+        );
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
