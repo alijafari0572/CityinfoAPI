@@ -17,7 +17,7 @@ namespace City_Persistence
 
         }
         public DbSet<City> Cities { get; set; } = null!;
-        public DbSet<PointOfInterest> pointOfInterest { get; set; } = null!;
+        public DbSet<PointOfInterest> PointOfInterest { get; set; } = null!;
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

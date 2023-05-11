@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Infrastructure\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\City_Domain\City_Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\City_Appilcation\City_Appilcation.csproj" />
     <ProjectReference Include="..\..\Core\City_Domain\City_Domain.csproj" />
   </ItemGroup>
 

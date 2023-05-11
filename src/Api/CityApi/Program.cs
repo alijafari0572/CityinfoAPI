@@ -1,4 +1,6 @@
+using City_Appilcation.Contracts.Persistance;
 using City_Persistence;
+using City_Persistence.Repositoris;
 using CityApi.Services;
 using CityInfo.API.Services;
 using CityinfoAPI;
@@ -40,8 +42,10 @@ builder.Services.AddDbContext<CityInfoDbContext>(option =>
 {
     option.UseSqlite(
         builder.Configuration["ConnectionStrings:CityConnectionString"]
-        );
+    );
 });
+
+builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
