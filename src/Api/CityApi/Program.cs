@@ -37,12 +37,12 @@ builder.Services.AddTransient<IMailService,CloudMailService>();
 #endif
 
 builder.Services.AddSingleton<CitiesDataStore>();
-builder.Services.AddDbContext<CityInfoDbContext>();
+//builder.Services.AddDbContext<CityInfoDbContext>();
 builder.Services.AddDbContext<CityInfoDbContext>(option =>
 {
     option.UseSqlite(
         builder.Configuration["ConnectionStrings:CityConnectionString"]
-    );
+        );
 });
 
 builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
