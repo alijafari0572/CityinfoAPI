@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using City_Appilcation.Contracts.Persistance;
+using City_Appilcation.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CityinfoAPI.Controllers
 {
@@ -7,27 +9,36 @@ namespace CityinfoAPI.Controllers
     //[Route("api/[controller]")]
     public class CitiesController : ControllerBase
     {
-        private readonly CitiesDataStore _dataStore;
-        public CitiesController(CitiesDataStore dataStore)
+        private readonly ICityInfoRepository _cityInfoRepository;
+        public CitiesController(ICityInfoRepository cityInfoRepository)
         {
-            _dataStore = dataStore;
+            _cityInfoRepository = cityInfoRepository;
         }
 
         [HttpGet]
-        public IActionResult GetCities()
+        public async Task<ActionResult<IEnumerable<CityWithoutPointOfInterestDto>>> GetCities()
         {
-            return Ok(_dataStore.Cities);
+            var Cities = await _cityInfoRepository.GetCitiesAsync();
+
+            var result = new List<CityWithoutPointOfInterestDto>();
+
+            foreach (var city in Cities)
+            {
+                result.Add(new CityWithoutPointOfInterestDto()
+                {
+                    Id = city.Id,
+                    Description = city.Description,
+                    Name = city.Name
+                });
+            }
+
+            return Ok(result);
+            // return Ok(citiesDataStore.Cities);
         }
         [HttpGet("{id}")]
         public IActionResult GetCities(int id)
         {
-            var city = _dataStore.Cities
-                .FirstOrDefault(c => c.Id == id);
-            if (city == null)
-            {
-                return NotFound();
-            }
-            return Ok(city);
+            return Ok();
         }
     }
 }
