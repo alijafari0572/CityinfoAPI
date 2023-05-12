@@ -14,6 +14,7 @@ namespace City_Appilcation.Profiles
         public PointOfInterestProfile()
         {
             CreateMap<City_Domain.PointOfInterest, City_Appilcation.DTOs.PointOfInterestDto>();
+            CreateMap<City_Domain.PointOfInterest, City_Appilcation.DTOs.PointOfInterestForUpdateDto>();
             CreateMap<City_Appilcation.DTOs.PointOfInterestForCreationDto, City_Domain.PointOfInterest>();
             CreateMap<City_Appilcation.DTOs.PointOfInterestForUpdateDto, City_Domain.PointOfInterest>();
             
