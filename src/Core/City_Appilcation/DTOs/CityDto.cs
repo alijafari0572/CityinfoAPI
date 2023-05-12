@@ -1,6 +1,6 @@
 ﻿using City_Appilcation.DTOs;
 
-namespace CityinfoAPI.Models
+namespace City_Appilcation.DTOs
 {
     public class CityDto
     {
@@ -11,10 +11,10 @@ namespace CityinfoAPI.Models
         {
             get
             {
-                return PointsOfInterest.Count;
+                return PointOfInterest.Count;
             }
         }
-        public ICollection<PointOfInterestDto> PointsOfInterest { get; set; }
+        public ICollection<PointOfInterestDto> PointOfInterest { get; set; }
         = new List<PointOfInterestDto>();
     }
 }

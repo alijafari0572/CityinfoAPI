@@ -14,8 +14,9 @@ namespace CityinfoAPI.Controllers
         private readonly IMapper _mapper;
         public CitiesController(ICityInfoRepository cityInfoRepository, IMapper mapper)
         {
-            _cityInfoRepository = cityInfoRepository;
-            _mapper = mapper;
+            _cityInfoRepository = cityInfoRepository ??
+                throw new ArgumentNullException(nameof(cityInfoRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
@@ -28,9 +29,22 @@ namespace CityinfoAPI.Controllers
                 );
         }
         [HttpGet("{id}")]
-        public IActionResult GetCities(int id)
+        public async Task<IActionResult>
+            GetCity(int id, bool includePointsOfInterest = false)
         {
-            return Ok();
+            var city = await _cityInfoRepository.GetCityAsync(id, includePointsOfInterest);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            if (includePointsOfInterest)
+            {
+                return Ok(_mapper.Map<CityDto>(city));
+            }
+
+            return Ok(_mapper.Map<CityWithoutPointOfInterestDto>(city));
+
         }
     }
 }

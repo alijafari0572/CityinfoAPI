@@ -13,6 +13,7 @@ namespace City_Appilcation.Profiles
         public CityProfile()
         {
             CreateMap<City_Domain.City, City_Appilcation.DTOs.CityWithoutPointOfInterestDto>();
+            CreateMap<City_Domain.City, City_Appilcation.DTOs.CityDto>();
         }
     }
 }

@@ -17,6 +17,11 @@ namespace City_Persistence.Repositoris
             _context = context ?? throw new ArgumentException(nameof(context));
         }
 
+        public async Task<bool> CityExistsAsync(int cityId)
+        {
+            return await _context.Cities.AnyAsync(c => c.Id == cityId);
+        }
+
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {
             return await _context.Cities
