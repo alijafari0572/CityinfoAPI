@@ -39,7 +39,7 @@ namespace City_Persistence.Repositoris
                  .Where(c => c.Id == cityId).FirstOrDefaultAsync();
         }
 
-        public async Task<PointOfInterest?> GetPointOfInterestForCity(int cityId,
+        public async Task<PointOfInterest?> GetPointOfInterestForCityAsync(int cityId,
             int pointOfInterestId)
         {
             return await _context.PointOfInterest

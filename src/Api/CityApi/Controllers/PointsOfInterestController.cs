@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using City_Appilcation.Contracts.Persistance;
 using City_Appilcation.DTOs;
+using City_Domain;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
@@ -46,19 +47,20 @@ namespace CityinfoAPI.Controllers
 
 
         [HttpGet("{pointofinterestId}", Name = "GetPointOfInterest")]
-        public IActionResult GetPointOfInterst(int cityid,int pointofinterestId)
+        public async Task<IActionResult> GetPointOfInterestForCityAsync(int cityid,int pointofinterestId)
         {
-            var city = _cityDataStore.Cities.FirstOrDefault(c => c.Id == cityid);
-            if (city == null)
+            if (!await _cityInfoRepository.CityExistsAsync(cityid))
             {
+                _logger.LogInformation($"{cityid} Not Found ...");
                 return NotFound();
             }
-            var point=city.PointOfInterest.FirstOrDefault(p=>p.Id==pointofinterestId);
-            if (point==null)
+            var pointofinterest=await _cityInfoRepository.GetPointOfInterestForCityAsync(cityid, pointofinterestId);
+            if (pointofinterest==null)
             {
+                _logger.LogInformation($"{pointofinterestId} Not Found ...");
                 return NotFound();
             }
-            return Ok(point);
+            return Ok(_mapper.Map<PointOfInterestDto>(pointofinterest));
         }
 
         #region  Post
