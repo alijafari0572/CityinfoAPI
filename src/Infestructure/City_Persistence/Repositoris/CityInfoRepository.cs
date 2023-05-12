@@ -17,6 +17,8 @@ namespace City_Persistence.Repositoris
             _context = context ?? throw new ArgumentException(nameof(context));
         }
 
+       
+
         public async Task<bool> CityExistsAsync(int cityId)
         {
             return await _context.Cities.AnyAsync(c => c.Id == cityId);
@@ -52,6 +54,18 @@ namespace City_Persistence.Repositoris
             return await _context.PointOfInterest
                .Where(p => p.CityId == cityId)
                .ToListAsync();
+        }
+        public async Task AddPointOfInterestForCityAsync(int cityId, PointOfInterest pointOfInterest)
+        {
+            var city = await GetCityAsync(cityId, false);
+            if (city != null)
+            {
+                city.PointOfInterest.Add(pointOfInterest);
+            }
+        }
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync() > 0);
         }
     }
 }

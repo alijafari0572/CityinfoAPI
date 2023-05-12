@@ -65,47 +65,28 @@ namespace CityinfoAPI.Controllers
 
         #region  Post
         [HttpPost]
-        public ActionResult<PointOfInterestDto> CreatePointOfInterest(
+        public async Task<ActionResult<PointOfInterestDto>> CreatePointOfInterest(
           int cityId,
           PointOfInterestForCreationDto pointOfInterest
           )
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-            var city = _cityDataStore
-                .Cities.FirstOrDefault(c => c.Id == cityId);
-            if (city == null)
+            if (!await _cityInfoRepository.CityExistsAsync(cityId))
             {
                 return NotFound();
             }
 
-            var maxpointOfInterestId = _cityDataStore.Cities
-                .SelectMany(c => c.PointOfInterest)
-                .Max(p => p.Id);
+            var finalPoint = _mapper.Map<PointOfInterest>(pointOfInterest);
+            await _cityInfoRepository.AddPointOfInterestForCityAsync(
+                cityId, finalPoint);
+            await _cityInfoRepository.SaveChangesAsync();
 
-            var createPoint = new PointOfInterestDto()
+            var createdpoint = _mapper.Map<City_Appilcation.DTOs.PointOfInterestDto>(finalPoint);
+
+            return CreatedAtRoute("GetPointOfInterest", new
             {
-                Id = ++maxpointOfInterestId,
-                Name = pointOfInterest.Name,
-                Description = pointOfInterest.Description
-            };
-
-            city.PointOfInterest.Add(createPoint);
-
-
-
-            return CreatedAtAction("GetPointOfInterest",
-                new
-                {
-                    cityId = cityId,
-                    pointOfInterestId = createPoint.Id
-
-                },
-                createPoint
-                );
+                cityId = cityId,
+                pointOfInterestId = createdpoint.Id
+            }, createdpoint);
         }
         #endregion
 
